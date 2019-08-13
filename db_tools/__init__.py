@@ -3,7 +3,8 @@ from datetime import datetime
 
 def get_date_time(strs):
     return datetime.strptime(strs,'%Y-%m-%d %H:%M:%S')
-def query_operate_pos(begin_time_l,geohase5,delta=3600):
+
+def query_operate_pos(begin_time_l,geohase7,delta=30):
     '''
     :param begin_time_l:str,like: '2017-02-01 19:0:47'
     :param geohase7: str
@@ -12,10 +13,24 @@ def query_operate_pos(begin_time_l,geohase5,delta=3600):
     '''
     session = Session()
     lst = []
+    for col in session.query(Operate).filter(Operate.GEOHASH7 == geohase7).all():
+        if (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta:
+            lst.append([float(col.GET_ON_LONGITUDE),float(col.GET_ON_LATITUDE)])
+    session.close()
+    return lst
+
+def query_operate(begin_time_l, geohase5, delta=3600):
+    '''
+    :param begin_time_l:str,like: '2017-02-01 19:0:47'
+    :param geohase5: str
+    :param delta: int
+    :return: [[lon,lat]]
+    '''
+    session = Session()
+    lst = []
     for col in session.query(Operate).filter(Operate.GEOHASH5 == geohase5).all():
         if (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta:
             lst.append([float(col.GET_ON_LONGITUDE),float(col.GET_ON_LATITUDE)])
-    print(lst)
     session.close()
     return lst
 
