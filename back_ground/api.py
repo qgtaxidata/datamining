@@ -8,6 +8,7 @@ from DBSCAN_taxi import DBSCAN_taxi
 from hot_Predict.hot_predict import predict_hotmap
 from rank_sort import get_rank
 from pagerank import demand
+from driverInfor import calculate_driver
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -79,16 +80,27 @@ def get_demand():
     :return:
     """
     json_data = request.get_data()
+    print('connected')
     dic = json.loads(json_data)
     demands = demand(dic['area'], dic['time']) # '2017-02-03 19:15:48'
+    graph_data = list()
+    graph_data.append({'title': '一个小时前', 'demand': demands[0]})
+    graph_data.append({'title': '当前时间', 'demand': demands[1]})
+    graph_data.append({'title': '一个小时后', 'demand': demands[2]})
     result = dict()
-    result['his'] = demands[0]
-    result['now'] = demands[1]
-    result['fut'] = demands[2]
-    result['title'] = mapping[dic['area']] + '需求分析及预测'
+    result['graph_data'] = graph_data
+    result['graph_title'] = mapping[dic['area']] + '需求分析及预测'
     print(result)
     return result
 
+
+@app.route('/taxi/api/v1.0/GetDriverInfo', methods=['POST'])
+def get_driver_info():
+    json_data = request.get_data()
+    dic = json.loads(json_data)
+    print('input:', dic)
+    result = calculate_driver(dic)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True, host='192.168.1.101', port=8080)
