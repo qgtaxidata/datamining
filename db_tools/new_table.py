@@ -64,5 +64,5 @@ def new_muti_operate_params(table_itr=range(3, 5),table_base='operate_his',class
 #     return True
 
 if __name__ =='__main__':
-    # new_muti_operate((1,))    #或者(3,4,5)，传入一个可迭代对象
-    new_muti_operate_params((1,))  # 或者(3,4,5)，传入一个可迭代对象
+    new_muti_operate((1,))    #或者(3,4,5)，传入一个可迭代对象
+    #new_muti_operate_params((1,))  # 或者(3,4,5)，传入一个可迭代对象
