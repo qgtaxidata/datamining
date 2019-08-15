@@ -376,58 +376,61 @@ def get_drive_information(driver_count, day, geohash):
     lst = []
     if day == 3:
         for col in session.query(OperateRevenue3).filter(OperateRevenue3.CHAUFFEUR_NO == driver_count).filter(OperateRevenue3.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 4:
         for col in session.query(OperateRevenue4).filter(OperateRevenue4.CHAUFFEUR_NO == driver_count).filter(OperateRevenue4.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 5:
         for col in session.query(OperateRevenue5).filter(OperateRevenue5.CHAUFFEUR_NO == driver_count).filter(OperateRevenue5.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 6:
         for col in session.query(OperateRevenue6).filter(OperateRevenue6.CHAUFFEUR_NO == driver_count).filter(OperateRevenue6.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 7:
         for col in session.query(OperateRevenue7).filter(OperateRevenue7.CHAUFFEUR_NO == driver_count).filter(OperateRevenue7.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 8:
         for col in session.query(OperateRevenue8).filter(OperateRevenue8.CHAUFFEUR_NO == driver_count).filter(OperateRevenue8.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 9:
         for col in session.query(OperateRevenue9).filter(OperateRevenue9.CHAUFFEUR_NO == driver_count).filter(OperateRevenue9.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 10:
         for col in session.query(OperateRevenue10).filter(OperateRevenue10.CHAUFFEUR_NO == driver_count).filter(OperateRevenue10.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 11:
         for col in session.query(OperateRevenue11).filter(OperateRevenue11.CHAUFFEUR_NO == driver_count).filter(OperateRevenue11.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 12:
         for col in session.query(OperateRevenue12).filter(OperateRevenue12.CHAUFFEUR_NO == driver_count).filter(OperateRevenue12.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 13:
         for col in session.query(OperateRevenue13).filter(OperateRevenue13.CHAUFFEUR_NO == driver_count).filter(OperateRevenue13.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 14:
         for col in session.query(OperateRevenue14).filter(OperateRevenue14.CHAUFFEUR_NO == driver_count).filter(OperateRevenue14.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 15:
         for col in session.query(OperateRevenue15).filter(OperateRevenue15.CHAUFFEUR_NO == driver_count).filter(OperateRevenue15.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 16:
         for col in session.query(OperateRevenue16).filter(OperateRevenue16.CHAUFFEUR_NO == driver_count).filter(OperateRevenue16.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 17:
         for col in session.query(OperateRevenue17).filter(OperateRevenue17.CHAUFFEUR_NO == driver_count).filter(OperateRevenue17.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 18:
         for col in session.query(OperateRevenue18).filter(OperateRevenue18.CHAUFFEUR_NO == driver_count).filter(OperateRevenue18.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 19:
         for col in session.query(OperateRevenue19).filter(OperateRevenue19.CHAUFFEUR_NO == driver_count).filter(OperateRevenue19.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     elif day == 20:
         for col in session.query(OperateRevenue20).filter(OperateRevenue20.CHAUFFEUR_NO == driver_count).filter(OperateRevenue20.GEOHASH5==geohash).all():
-            lst.append([col.EQUIPMENT_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
+    elif day == 21:
+        for col in session.query(OperateRevenue21).filter(OperateRevenue21.CHAUFFEUR_NO == driver_count).filter(OperateRevenue21.GEOHASH5==geohash).all():
+            lst.append([col.COMPANY_ID, float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME, float(col.OPERATE_MONEY)/100])
     session.close()
     lst = list(set([tuple(t) for t in lst]))
     all_list = []

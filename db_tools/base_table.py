@@ -534,6 +534,36 @@ class OperateRevenue20(Base):
     GEOEND7 = Column(VARCHAR(765))
     CHAUFFEUR_NO = Column(VARCHAR(8))
     ROW_KEY = Column(VARCHAR(120))
+
+class OperateRevenue21(Base):
+    __tablename__ = 'operate_his21'
+    ID = Column(BIGINT,primary_key=True)
+    EQUIPMENT_ID = Column(VARCHAR(30))
+    PLATENO = Column(VARCHAR(24))
+    COMPANY_ID = Column(VARCHAR(10))
+    TEAM_CODE = Column(VARCHAR(8))
+    EMPTY_MILE = Column(VARCHAR(24))
+    EMPTY_BEGIN_TIME = Column(VARCHAR(255))
+    WORK_BEGIN_TIME = Column(VARCHAR(255))
+    WORK_END_TIME = Column(VARCHAR(255))
+    UNIT_PRICE = Column(VARCHAR(7))
+    LOAD_MILE = Column(VARCHAR(6))
+    SLOW_COUNT_TIME = Column(VARCHAR(11))
+    OPERATE_MONEY = Column(VARCHAR(20))
+    EVALUATE = Column(VARCHAR(11))
+    TRADE_CODE = Column(VARCHAR(96))
+    GET_ON_LONGITUDE = Column(VARCHAR(16))
+    GET_ON_LATITUDE = Column(VARCHAR(16))
+    GET_OFF_LONGITUDE = Column(VARCHAR(16))
+    GET_OFF_LATITUDE = Column(VARCHAR(16))
+    TIME_REPRE = Column(VARCHAR(11))
+    GEOHASH5 = Column(VARCHAR(30))
+    MIN_REPRE = Column(VARCHAR(11))
+    GEOHASH7 = Column(VARCHAR(30))
+    GEOEND7 = Column(VARCHAR(765))
+    CHAUFFEUR_NO = Column(VARCHAR(8))
+    ROW_KEY = Column(VARCHAR(120))
+
 class OperateRevenueRanking(Base):
     __tablename__ = 'revenue_ranking'
     day = Column(VARCHAR(255), primary_key=True)

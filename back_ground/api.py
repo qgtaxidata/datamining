@@ -96,11 +96,19 @@ def get_demand():
 
 @app.route('/taxi/api/v1.0/GetDriverInfo', methods=['POST'])
 def get_driver_info():
+    """
+
+    :return:
+    """
     json_data = request.get_data()
     dic = json.loads(json_data)
     print('input:', dic)
-    result = calculate_driver(dic)
+    try:
+        result = calculate_driver(dic)
+    except TypeError:
+        return 'error'
+    print(result)
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.1.101', port=8080)
+    app.run(debug=True, host='192.168.31.89', port=8080)

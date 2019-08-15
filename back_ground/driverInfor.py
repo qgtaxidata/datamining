@@ -66,12 +66,12 @@ def calculate_driver(drive_dict):
     all_drive_time = 0.0  # 载客时长
     all_null_mile = 0.0
     driver_infomation ={}
-    driver_info1 = get_drive_information(driver_count, day, all_geohash[0])
-    if len(driver_info1) == 0:
-        return 'null'
-    company = driver_info1[0][0]
+    company =  'null'
     for geohash in all_geohash:
         driver_info = get_drive_information(driver_count, day, geohash)
+        print(driver_info)
+        if len(driver_info):
+            company = driver_info[0][0]
         for one_order in driver_info:
             all_mile += one_order[1]
             null_mile += one_order[2]
@@ -92,4 +92,6 @@ def calculate_driver(drive_dict):
     print(driver_infomation)
     return driver_infomation
 
-calculate_driver({'area':9, 'date':'2017-02-03', 'driverID':'00045034'})
+calculate_driver({'area': 1, 'date': '2017-02-03', 'driverID': '00071703'})
+
+# 'area':9, 'date':'2017-02-03', 'driverID':'00045034'
