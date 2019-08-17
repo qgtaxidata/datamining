@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN
+from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from settings import url
@@ -570,12 +570,16 @@ class OperateRevenueRanking(Base):
     Admin = Column(VARCHAR(5))
     ranking = Column(VARCHAR(255))
 NetworkSession = sessionmaker(bind=engine)
+
+
 class Nodes(Base):
     __tablename__ = 'nodes'
     id = Column(BIGINT,primary_key=True)
-    osm_id = Column(BIGINT)
+    nid = Column(BIGINT)
+    rid = Column(BIGINT)
     longitude =  Column(DECIMAL(precision=12,scale=9))
     latitude = Column(DECIMAL(precision=12,scale=9))
+    geohash5 = Column(VARCHAR(30))
 class Records(Base):
     __tablename__ = 'records'
     id = Column(BIGINT,primary_key=True,autoincrement=True)
@@ -586,5 +590,29 @@ class Records(Base):
     name = Column(VARCHAR(255))
     code = Column(BIGINT)
     fclass = Column(VARCHAR(255))
+    length  = Column(DECIMAL(precision=12,scale=3))
     from_node =Column(BIGINT)
     to_node = Column(BIGINT)
+
+class BaseTaxiPos(object):
+    ID = Column(BIGINT,primary_key=True)
+    LICENSEPLATENO = Column(VARCHAR(255))
+    GPS_TIME = Column(TIMESTAMP)
+    LONGITUDE =  Column(DECIMAL(precision=12,scale=9))
+    LATITUDE= Column(DECIMAL(precision=12,scale=9))
+
+class Speed(Base):
+    __tablename__ = 'quality'
+    id = Column(BIGINT,primary_key=True,autoincrement=True)
+    rid = Column(BIGINT)
+    length = Column(DECIMAL(precision=12,scale=3))
+    average_time = Column(DECIMAL(precision=12,scale=3))
+    density = Column(DECIMAL(precision=12,scale=3))
+    count = Column(INT)
+
+def drop_table(cls,Base=Base,engine=engine):
+    try:
+        cls.__table__.drop(engine)
+    except:
+        pass
+    Base.metadata.create_all(engine)

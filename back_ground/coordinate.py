@@ -66,6 +66,7 @@ def gcj02_to_wgs84(coordinates):
         _transform[:, 0] * 2 - mglng, _transform[:, 1] * 2 - mglat
     ]).T
     return coordinates
+
 def _transformlat(coordinates):
     lng = coordinates[:, 0] - 105
     lat = coordinates[:, 1] - 35

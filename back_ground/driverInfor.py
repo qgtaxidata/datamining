@@ -69,7 +69,6 @@ def calculate_driver(drive_dict):
     company =  'null'
     for geohash in all_geohash:
         driver_info = get_drive_information(driver_count, day, geohash)
-        print(driver_info)
         if len(driver_info):
             company = driver_info[0][0]
         for one_order in driver_info:
@@ -92,6 +91,6 @@ def calculate_driver(drive_dict):
     print(driver_infomation)
     return driver_infomation
 
-calculate_driver({'area': 1, 'date': '2017-02-03', 'driverID': '00071703'})
+# calculate_driver({'area': 1, 'date': '2017-02-03', 'driverID': '00071703'})
 
 # 'area':9, 'date':'2017-02-03', 'driverID':'00045034'

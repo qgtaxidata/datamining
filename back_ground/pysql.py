@@ -2,6 +2,7 @@
 the pysql file
 """
 import pymysql
+import requests
 import warnings
 warnings.filterwarnings('ignore')
 

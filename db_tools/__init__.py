@@ -4,6 +4,26 @@ from datetime import datetime
 def get_date_time(strs):
     return datetime.strptime(strs,'%Y-%m-%d %H:%M:%S')
 
+def query_taxi_pos(table_itr =(1,)):
+    _engine = create_engine('mysql+pymysql://qgtaxi:qgtaxi_2018@10.21.48.11/taxilog')  # ,echo=True ,print执行的sql
+    _Base = declarative_base(bind=_engine)
+    Session = sessionmaker(bind=_engine)
+    for i in table_itr:
+        exec(f'''class _TaxiPos{i}(BaseTaxiPos,_Base):
+        __tablename__ = "gpsdata{i}"''')
+    s = Session()
+    for i in table_itr:
+        c = eval('_TaxiPos'+str(i))   #映射单个表的类
+        q = s.query(c)
+        for i,col in enumerate(s.query(c).order_by(c.GPS_TIME).limit(1e4).yield_per(1000)): #.limit(1e3)): #
+            # print(i)
+            GPS_TIME = col.GPS_TIME
+            LATITUDE = col.LATITUDE
+            LONGITUDE = col.LONGITUDE
+            LICENSEPLATENO = col.LICENSEPLATENO
+            yield [LICENSEPLATENO, GPS_TIME, LONGITUDE, LATITUDE]
+
+
 # def query_operate_pos(begin_time_l,geohase7,delta=30):
 #     '''
 #     :param begin_time_l:str,like: '2017-02-01 19:0:47'
