@@ -571,6 +571,15 @@ class OperateRevenueRanking(Base):
     ranking = Column(VARCHAR(255))
 NetworkSession = sessionmaker(bind=engine)
 
+class Operateefficient(Base):
+    __tablename__ = 'efficiency_params'
+    count = Column(BIGINT, primary_key=True)
+    area = Column(VARCHAR(5))
+    start_time = Column(VARCHAR(20))
+    end_time = Column(VARCHAR(20))
+    mile_efficiency = Column(VARCHAR(30))
+    time_efficiency = Column(VARCHAR(30))
+    total_drive_num = Column(VARCHAR(30))
 
 class Nodes(Base):
     __tablename__ = 'nodes'

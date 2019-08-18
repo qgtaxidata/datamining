@@ -459,6 +459,133 @@ def get_drive_information(driver_count, day, geohash):
     return list(all_list)
 
 
+#负责查询在一定天数内的订单的各个信息(计算一个区的频率，一个区的）
+def get_order_information(day, geohash, time_):
+    session = Session()
+    lst = []
+    if day == '2017-02-01':
+        for col in session.query(OperateRevenue1).filter(OperateRevenue1.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-02':
+        for col in session.query(OperateRevenue2).filter(OperateRevenue2.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-03':
+        for col in session.query(OperateRevenue3).filter(OperateRevenue3.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-04':
+        for col in session.query(OperateRevenue4).filter(OperateRevenue4.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-05':
+        for col in session.query(OperateRevenue5).filter(OperateRevenue5.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-06':
+        for col in session.query(OperateRevenue6).filter(OperateRevenue6.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-07':
+        for col in session.query(OperateRevenue7).filter(OperateRevenue7.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-08':
+        for col in session.query(OperateRevenue8).filter(OperateRevenue8.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-09':
+        for col in session.query(OperateRevenue9).filter(OperateRevenue9.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-10':
+        for col in session.query(OperateRevenue10).filter(OperateRevenue10.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-11':
+        for col in session.query(OperateRevenue11).filter(OperateRevenue11.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-12':
+        for col in session.query(OperateRevenue12).filter(OperateRevenue12.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-13':
+        for col in session.query(OperateRevenue13).filter(OperateRevenue13.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-14':
+        for col in session.query(OperateRevenue14).filter(OperateRevenue14.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-15':
+        for col in session.query(OperateRevenue15).filter(OperateRevenue15.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-16':
+        for col in session.query(OperateRevenue16).filter(OperateRevenue16.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-17':
+        for col in session.query(OperateRevenue17).filter(OperateRevenue17.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-18':
+        for col in session.query(OperateRevenue18).filter(OperateRevenue18.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-19':
+        for col in session.query(OperateRevenue19).filter(OperateRevenue19.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-20':
+        for col in session.query(OperateRevenue20).filter(OperateRevenue20.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    elif day == '2017-02-21':
+        for col in session.query(OperateRevenue21).filter(OperateRevenue21.GEOHASH5==geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.LOAD_MILE), float(col.EMPTY_MILE), col.EMPTY_BEGIN_TIME, col.WORK_BEGIN_TIME, col.WORK_END_TIME])
+    session.close()
+    lst = list(set([tuple(t) for t in lst]))
+    all_list = []
+    for i in range(len(lst)):
+        all_list.append(list(lst[i]))
+    return list(all_list)
+
+def insert_efficie_paramers(area, strat_time, end_time, mile_efficiency, time_efficiency, total_drive_num):
+    session = Session()
+    p = Operateefficient(area=area, start_time=strat_time, end_time=end_time, mile_efficiency=mile_efficiency, time_efficiency=time_efficiency, total_drive_num=total_drive_num)
+    session.add(p)
+    session.commit()
+    session.close()
+
+def get_efficiencyPredict(area, day):
+    session = Session()
+    lst = []
+    for col in session.query(Operateefficient).filter(Operateefficient.area == area).filter(Operateefficient.start_time == day[0]).filter(Operateefficient.end_time == day[1]).all():
+        lst.append([float(col.mile_efficiency), float(col.time_efficiency), int(col.total_drive_num), [col.start_time, col.end_time]])
+    session.close()
+    return lst[0]
 
 
 if __name__ =='__main__':
