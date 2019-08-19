@@ -581,6 +581,15 @@ class Operateefficient(Base):
     time_efficiency = Column(VARCHAR(30))
     total_drive_num = Column(VARCHAR(30))
 
+class Operatehotdata(Base):
+    __tablename__ = 'hot_data'
+    count = Column(BIGINT, primary_key=True)
+    date = Column(VARCHAR(100))
+    geohash = Column(VARCHAR(100))
+    times = Column(VARCHAR(100))
+    number = Column(VARCHAR(100))
+
+
 class Nodes(Base):
     __tablename__ = 'nodes'
     id = Column(BIGINT,primary_key=True)
