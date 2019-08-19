@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT
+from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT,CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from settings import url
@@ -589,6 +589,7 @@ class Nodes(Base):
     longitude =  Column(DECIMAL(precision=12,scale=9))
     latitude = Column(DECIMAL(precision=12,scale=9))
     geohash5 = Column(VARCHAR(30))
+    geohash7 = Column(VARCHAR(30))
 class Records(Base):
     __tablename__ = 'records'
     id = Column(BIGINT,primary_key=True,autoincrement=True)
@@ -600,24 +601,39 @@ class Records(Base):
     code = Column(BIGINT)
     fclass = Column(VARCHAR(255))
     length  = Column(DECIMAL(precision=12,scale=3))
+    geohash5 = Column(VARCHAR(10))
     from_node =Column(BIGINT)
     to_node = Column(BIGINT)
 
+#****道路质量
 class BaseTaxiPos(object):
     ID = Column(BIGINT,primary_key=True)
     LICENSEPLATENO = Column(VARCHAR(255))
     GPS_TIME = Column(TIMESTAMP)
     LONGITUDE =  Column(DECIMAL(precision=12,scale=9))
     LATITUDE= Column(DECIMAL(precision=12,scale=9))
-
-class Speed(Base):
+    CAR_STAT1 = Column(CHAR(2))
+    HOUR_REPRE = Column(VARCHAR(5))
+class Quality(Base):
     __tablename__ = 'quality'
     id = Column(BIGINT,primary_key=True,autoincrement=True)
     rid = Column(BIGINT)
+    hour_repre = Column(CHAR(2))
     length = Column(DECIMAL(precision=12,scale=3))
     average_time = Column(DECIMAL(precision=12,scale=3))
     density = Column(DECIMAL(precision=12,scale=3))
+    flow =  Column(DECIMAL(precision=12,scale=3))
     count = Column(INT)
+
+class ZoneQuality(Base):
+    __tablename__ = 'zone_quality'
+    id = Column(BIGINT, primary_key=True, autoincrement=True)
+    g_zone = Column(INT)
+    g_name = Column(VARCHAR(10))
+    hour_repre = Column(CHAR(2))
+    average_time = Column(DECIMAL(precision=12,scale=3))
+    density = Column(DECIMAL(precision=12,scale=3))
+    flow =  Column(DECIMAL(precision=12,scale=3))
 
 def drop_table(cls,Base=Base,engine=engine):
     try:
@@ -625,3 +641,6 @@ def drop_table(cls,Base=Base,engine=engine):
     except:
         pass
     Base.metadata.create_all(engine)
+
+if __name__ == "__main__":
+    drop_table(Quality)
