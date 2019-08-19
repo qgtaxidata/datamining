@@ -164,21 +164,6 @@ def query_taxi_pos(table_itr =(1,)):
             yield [LICENSEPLATENO, GPS_TIME, LONGITUDE, LATITUDE]
 
 
-# def query_operate_pos(begin_time_l,geohase7,delta=30):
-#     '''
-#     :param begin_time_l:str,like: '2017-02-01 19:0:47'
-#     :param geohase7: str
-#     :param delta: int
-#     :return: [[lon,lat]]
-#     '''
-#     session = Session()
-#     lst = []
-#     for col in session.query(Operate).filter(Operate.GEOHASH7 == geohase7).all():
-#         if (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta:
-#             lst.append([float(col.GET_ON_LONGITUDE),float(col.GET_ON_LATITUDE)])
-#     session.close()
-#     return lst
-
 def query_operate_pos(begin_time_l,geohase5,delta=3600):
     '''
     :param begin_time_l:str,like: '2017-02-01 19:0:47'
@@ -285,6 +270,35 @@ def get_operate_params(geohash):
         lst.append([col.LINEAR, col.LINE_MORE, col.Ridge])
     session.close()
     return lst
+
+# gps轨迹数据
+def query_taxi_qua(firstid,table_itr=(13,),win=100000):
+    _engine = create_engine('mysql+pymysql://qgtaxi:qgtaxi_2018@10.21.48.11/taxilog')  # ,echo=True ,print执行的sql
+    _Base = declarative_base(bind=_engine)
+    Session = sessionmaker(bind=_engine)
+    for i in table_itr:
+        exec(f'''class _TaxiPos{i}(BaseTaxiPos,_Base):
+        __tablename__ = "gpsdata_copy{i}"''')
+    s = Session()
+    for i in table_itr:
+        cls = eval('_TaxiPos'+str(i))   #映射单个表的类
+        pk_attr = cls.ID
+        qry = s.query(cls)
+        q = qry.filter(pk_attr> firstid).filter(pk_attr < firstid+ win).filter(cls.CAR_STAT1!='7')  #熄火部分不计
+        for col in q.order_by(cls.GPS_TIME):     #.limit(win):
+            GPS_TIME = col.GPS_TIME
+            HOUR_REPRE =col.HOUR_REPRE
+            LATITUDE = col.LATITUDE
+            LONGITUDE = col.LONGITUDE
+            LICENSEPLATENO = col.LICENSEPLATENO
+            yield [LICENSEPLATENO,HOUR_REPRE, GPS_TIME, LONGITUDE, LATITUDE]
+        return None
+
+def query_zone_quality(gZone,hour):
+    s = Session()
+    inst = s.query(ZoneQuality).filter(ZoneQuality.g_zone==gZone).filter(ZoneQuality.hour_repre==str(hour)).first()
+    return float(inst.average_time),float(inst.density),float(inst.flow)
+
 
 # 这部分代码属于收入排行榜使用的算法，故可以注释
 def get_operate_his(day):
@@ -744,34 +758,6 @@ def get_Operatehotdata(date, geohash):
     session.close()
     return lst
 
-# gps轨迹数据
-def query_taxi_qua(firstid,table_itr=(13,),win=100000):
-    _engine = create_engine('mysql+pymysql://qgtaxi:qgtaxi_2018@10.21.48.11/taxilog')  # ,echo=True ,print执行的sql
-    _Base = declarative_base(bind=_engine)
-    Session = sessionmaker(bind=_engine)
-    for i in table_itr:
-        exec(f'''class _TaxiPos{i}(BaseTaxiPos,_Base):
-        __tablename__ = "gpsdata_copy{i}"''')
-    s = Session()
-    for i in table_itr:
-        cls = eval('_TaxiPos'+str(i))   #映射单个表的类
-        pk_attr = cls.ID
-        qry = s.query(cls)
-        q = qry.filter(pk_attr> firstid).filter(pk_attr < firstid+ win).filter(cls.CAR_STAT1!='7')  #熄火部分不计
-        for col in q.order_by(cls.GPS_TIME):     #.limit(win):
-            GPS_TIME = col.GPS_TIME
-            HOUR_REPRE =col.HOUR_REPRE
-            LATITUDE = col.LATITUDE
-            LONGITUDE = col.LONGITUDE
-            LICENSEPLATENO = col.LICENSEPLATENO
-            yield [LICENSEPLATENO,HOUR_REPRE, GPS_TIME, LONGITUDE, LATITUDE]
-        return None
-
-def query_zone_quality(gZone,hour):
-    s = Session()
-    inst = s.query(ZoneQuality).filter(ZoneQuality.g_zone==gZone).filter(ZoneQuality.hour_repre==str(hour)).first()
-    return float(inst.average_time),float(inst.density),float(inst.flow)
-
 
 
 
@@ -781,5 +767,3 @@ if __name__ =='__main__':
     begin_time_u = '2017-02-02 19:53:47'
     # lst = query_operate(begin_time_l,geohase7)
     # lst = query_operate_(begin_time_l,begin_time_u,None)
-    # with open('lst.py','w') as f:
-    #     f.write(str(lst))

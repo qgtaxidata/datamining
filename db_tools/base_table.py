@@ -665,6 +665,7 @@ class Nodes(Base):
     longitude =  Column(DECIMAL(precision=12,scale=9))
     latitude = Column(DECIMAL(precision=12,scale=9))
     geohash5 = Column(VARCHAR(30))
+    geohash7 = Column(VARCHAR(30))
 class Records(Base):
     __tablename__ = 'records'
     id = Column(BIGINT,primary_key=True,autoincrement=True)
@@ -676,6 +677,7 @@ class Records(Base):
     code = Column(BIGINT)
     fclass = Column(VARCHAR(255))
     length  = Column(DECIMAL(precision=12,scale=3))
+    geohash5 = Column(VARCHAR(10))
     from_node =Column(BIGINT)
     to_node = Column(BIGINT)
 
@@ -685,15 +687,6 @@ class BaseTaxiPos(object):
     GPS_TIME = Column(TIMESTAMP)
     LONGITUDE =  Column(DECIMAL(precision=12,scale=9))
     LATITUDE= Column(DECIMAL(precision=12,scale=9))
-
-class Speed(Base):
-    __tablename__ = 'quality'
-    id = Column(BIGINT,primary_key=True,autoincrement=True)
-    rid = Column(BIGINT)
-    length = Column(DECIMAL(precision=12,scale=3))
-    average_time = Column(DECIMAL(precision=12,scale=3))
-    density = Column(DECIMAL(precision=12,scale=3))
-    count = Column(INT)
 
 class Quality(Base):
     __tablename__ = 'quality'
@@ -723,3 +716,4 @@ def drop_table(cls,Base=Base,engine=engine):
     except:
         pass
     Base.metadata.create_all(engine)
+
