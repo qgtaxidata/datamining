@@ -166,19 +166,115 @@ def query_taxi_pos(table_itr =(1,)):
 
 def query_operate_pos(begin_time_l,geohase5,delta=3600):
     '''
-    :param begin_time_l:str,like: '2017-02-01 19:0:47'
-    :param geohase7: str
-    :param delta: int
-    :return: [[lon,lat]]
+     :param begin_time_l:str,like: '2017-02-01 19:0:47'
+     :param geohase7: str
+     :param delta: int
+     :return: [[lon,lat]]
     '''
     session = Session()
     lst = []
-    for col in session.query(Operate).filter(Operate.GEOHASH5 == geohase5).all():
-        if (0<=(get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & \
-                ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())<= delta):
-               lst.append([float(col.GET_ON_LONGITUDE),float(col.GET_ON_LATITUDE)])
+    day = begin_time_l[0:10]
+    #input(day)
+    if day == '2017-02-03':
+        for col in session.query(OperateRevenue3).filter(OperateRevenue3.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-04':
+        for col in session.query(OperateRevenue4).filter(OperateRevenue4.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-05':
+        for col in session.query(OperateRevenue5).filter(OperateRevenue5.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-06':
+        for col in session.query(OperateRevenue6).filter(OperateRevenue6.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-07':
+        for col in session.query(OperateRevenue7).filter(OperateRevenue7.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-08':
+        for col in session.query(OperateRevenue8).filter(OperateRevenue8.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-09':
+        for col in session.query(OperateRevenue9).filter(OperateRevenue9.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+
+    elif day == '2017-02-10':
+        for col in session.query(OperateRevenue10).filter(OperateRevenue10.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-11':
+        for col in session.query(OperateRevenue11).filter(OperateRevenue11.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-12':
+        for col in session.query(OperateRevenue12).filter(OperateRevenue12.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-13':
+        for col in session.query(OperateRevenue13).filter(OperateRevenue13.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-14':
+        for col in session.query(OperateRevenue14).filter(OperateRevenue14.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-15':
+        for col in session.query(OperateRevenue15).filter(OperateRevenue15.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-16':
+        for col in session.query(OperateRevenue16).filter(OperateRevenue16.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+
+    elif day == '2017-02-17':
+        for col in session.query(OperateRevenue17).filter(OperateRevenue17.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-18':
+        for col in session.query(OperateRevenue18).filter(OperateRevenue18.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-19':
+        for col in session.query(OperateRevenue19).filter(OperateRevenue19.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+    elif day == '2017-02-20':
+        for col in session.query(OperateRevenue20).filter(OperateRevenue20.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
+
+    elif day == '2017-02-21':
+        for col in session.query(OperateRevenue21).filter(OperateRevenue21.GEOHASH5 == geohase5).all():
+            if (0 <= (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp())) & ((get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta):
+                lst.append([float(col.GET_ON_LONGITUDE), float(col.GET_ON_LATITUDE)])
+
     session.close()
-    return lst
+    return list(lst)
 
 
 def query_operate(begin_time_l, geohase5, delta=3600):
