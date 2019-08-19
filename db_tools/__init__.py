@@ -582,7 +582,21 @@ def get_efficiencyPredict(area, day):
     session.close()
     return lst[0]
 
+def insert_Operatehotdata(date, geohash, times, number):
+    session = Session()
+    p = Operatehotdata(date=date, geohash=geohash, times=times,number=number)
+    session.add(p)
+    session.commit()
+    session.close()
 
+def get_Operatehotdata(date, geohash):
+    session = Session()
+    lst = []
+    for col in session.query(Operatehotdata).filter(Operatehotdata.date == date).filter(
+            Operatehotdata.geohash == geohash).all():
+        lst.append(col.number)
+    session.close()
+    return lst
 if __name__ =='__main__':
     geohase7='ws0e9u4'
     begin_time_l ='2017-02-01 0:0:0'
