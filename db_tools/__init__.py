@@ -2,8 +2,182 @@ from db_tools.base_table import *
 from datetime import datetime
 
 
+def income_info(day, geohash, time_):
+    session = Session()
+    lst = []
+    if day == '2017-02-03':
+        for col in session.query(OperateRevenue3).filter(OperateRevenue3.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY)/100])
+    elif day == '2017-02-04':
+        for col in session.query(OperateRevenue4).filter(OperateRevenue4.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-05':
+        for col in session.query(OperateRevenue5).filter(OperateRevenue5.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-06':
+        for col in session.query(OperateRevenue6).filter(OperateRevenue6.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-07':
+        for col in session.query(OperateRevenue7).filter(OperateRevenue7.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-08':
+        for col in session.query(OperateRevenue8).filter(OperateRevenue8.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-09':
+        for col in session.query(OperateRevenue9).filter(OperateRevenue9.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-10':
+        for col in session.query(OperateRevenue10).filter(OperateRevenue10.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-11':
+        for col in session.query(OperateRevenue11).filter(OperateRevenue11.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-12':
+        for col in session.query(OperateRevenue12).filter(OperateRevenue12.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-13':
+        for col in session.query(OperateRevenue13).filter(OperateRevenue13.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-14':
+        for col in session.query(OperateRevenue14).filter(OperateRevenue14.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-15':
+        for col in session.query(OperateRevenue15).filter(OperateRevenue15.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-16':
+        for col in session.query(OperateRevenue16).filter(OperateRevenue16.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-17':
+        for col in session.query(OperateRevenue17).filter(OperateRevenue17.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-18':
+        for col in session.query(OperateRevenue18).filter(OperateRevenue18.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-19':
+        for col in session.query(OperateRevenue19).filter(OperateRevenue19.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-20':
+        for col in session.query(OperateRevenue20).filter(OperateRevenue20.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    elif day == '2017-02-21':
+        for col in session.query(OperateRevenue21).filter(OperateRevenue21.GEOHASH5 == geohash).all():
+            if (get_date_time(col.EMPTY_BEGIN_TIME) > get_date_time(time_[0])) and (
+                    get_date_time(col.EMPTY_BEGIN_TIME) <= get_date_time(time_[1])):
+                lst.append([float(col.OPERATE_MONEY) / 100])
+
+    session.close()
+    return list(lst)
+
+
+def insert_income_info(AREA,INCOME, BEGIN_TIME, END_TIME):
+    session = Session()
+    p = New_Income_Table(AREA = AREA,INCOME = INCOME, BEGIN_TIME = BEGIN_TIME,END_TIME = END_TIME)
+    session.add(p)
+    session.commit()
+    session.close()
+
+
+def get_info_of_income(area, date):
+    session = Session()
+    lst = []
+    for col in session.query(New_Income_Table).filter(New_Income_Table.AREA == area,).all():
+        if col.BEGIN_TIME == date:
+            # print("haha",[col.INCOME,[col.BEGIN_TIME,col.END_TIME]])
+            lst.extend([float(col.INCOME),[col.BEGIN_TIME,col.END_TIME]])
+    session.close()
+    return lst
+
+
 def get_date_time(strs):
     return datetime.strptime(strs,'%Y-%m-%d %H:%M:%S')
+
+def query_taxi_pos(table_itr =(1,)):
+    _engine = create_engine('mysql+pymysql://qgtaxi:qgtaxi_2018@10.21.48.11/taxilog')  # ,echo=True ,print执行的sql
+    _Base = declarative_base(bind=_engine)
+    Session = sessionmaker(bind=_engine)
+    for i in table_itr:
+        exec(f'''class _TaxiPos{i}(BaseTaxiPos,_Base):
+        __tablename__ = "gpsdata{i}"''')
+    s = Session()
+    for i in table_itr:
+        c = eval('_TaxiPos'+str(i))   #映射单个表的类
+        q = s.query(c)
+        for i,col in enumerate(s.query(c).order_by(c.GPS_TIME).limit(1e4).yield_per(1000)): #.limit(1e3)): #
+            # print(i)
+            GPS_TIME = col.GPS_TIME
+            LATITUDE = col.LATITUDE
+            LONGITUDE = col.LONGITUDE
+            LICENSEPLATENO = col.LICENSEPLATENO
+            yield [LICENSEPLATENO, GPS_TIME, LONGITUDE, LATITUDE]
+
+
+# def query_operate_pos(begin_time_l,geohase7,delta=30):
+#     '''
+#     :param begin_time_l:str,like: '2017-02-01 19:0:47'
+#     :param geohase7: str
+#     :param delta: int
+#     :return: [[lon,lat]]
+#     '''
+#     session = Session()
+#     lst = []
+#     for col in session.query(Operate).filter(Operate.GEOHASH7 == geohase7).all():
+#         if (get_date_time(begin_time_l).timestamp() - get_date_time(col.WORK_BEGIN_TIME).timestamp()) <= delta:
+#             lst.append([float(col.GET_ON_LONGITUDE),float(col.GET_ON_LATITUDE)])
+#     session.close()
+#     return lst
 
 def query_operate_pos(begin_time_l,geohase5,delta=3600):
     '''
@@ -21,6 +195,7 @@ def query_operate_pos(begin_time_l,geohase5,delta=3600):
     session.close()
     return lst
 
+
 def query_operate(begin_time_l, geohase5, delta=3600):
     '''
     :param begin_time_l:str,like: '2017-02-01 19:0:47'
@@ -35,6 +210,7 @@ def query_operate(begin_time_l, geohase5, delta=3600):
             lst.append([float(col.GET_ON_LONGITUDE),float(col.GET_ON_LATITUDE)])
     session.close()
     return lst
+
 
 def query_operate_price(begin_time_l,geohase7,delta=600):
     '''
@@ -80,7 +256,6 @@ def query_operate_price_del(begin_time_l,geohase5,delta=1):
             lst.append(float(col.UNIT_PRICE))
     session.close()
     return lst
-
 def query_operate_geohash():
     '''
     :param begin_time_l:str,like: '2017-02-01 19:0:47'
@@ -110,36 +285,6 @@ def get_operate_params(geohash):
         lst.append([col.LINEAR, col.LINE_MORE, col.Ridge])
     session.close()
     return lst
-
-# gps轨迹数据
-def query_taxi_qua(firstid,table_itr=(13,),win=100000):
-    _engine = create_engine('mysql+pymysql://qgtaxi:qgtaxi_2018@10.21.48.11/taxilog')  # ,echo=True ,print执行的sql
-    _Base = declarative_base(bind=_engine)
-    Session = sessionmaker(bind=_engine)
-    for i in table_itr:
-        exec(f'''class _TaxiPos{i}(BaseTaxiPos,_Base):
-        __tablename__ = "gpsdata_copy{i}"''')
-    s = Session()
-    for i in table_itr:
-        cls = eval('_TaxiPos'+str(i))   #映射单个表的类
-        pk_attr = cls.ID
-        qry = s.query(cls)
-        q = qry.filter(pk_attr> firstid).filter(pk_attr < firstid+ win).filter(cls.CAR_STAT1!='7')  #熄火部分不计
-        for col in q.order_by(cls.GPS_TIME):     #.limit(win):
-            GPS_TIME = col.GPS_TIME
-            HOUR_REPRE =col.HOUR_REPRE
-            LATITUDE = col.LATITUDE
-            LONGITUDE = col.LONGITUDE
-            LICENSEPLATENO = col.LICENSEPLATENO
-            yield [LICENSEPLATENO,HOUR_REPRE, GPS_TIME, LONGITUDE, LATITUDE]
-        return None
-
-def query_zone_quality(gZone,hour):
-    s = Session()
-    inst = s.query(ZoneQuality).filter(ZoneQuality.g_zone==gZone).filter(ZoneQuality.hour_repre==str(hour)).first()
-    return float(inst.average_time),float(inst.density),float(inst.flow)
-
-
 
 # 这部分代码属于收入排行榜使用的算法，故可以注释
 def get_operate_his(day):
@@ -582,6 +727,7 @@ def get_efficiencyPredict(area, day):
     session.close()
     return lst[0]
 
+
 def insert_Operatehotdata(date, geohash, times, number):
     session = Session()
     p = Operatehotdata(date=date, geohash=geohash, times=times,number=number)
@@ -597,6 +743,38 @@ def get_Operatehotdata(date, geohash):
         lst.append(col.number)
     session.close()
     return lst
+
+# gps轨迹数据
+def query_taxi_qua(firstid,table_itr=(13,),win=100000):
+    _engine = create_engine('mysql+pymysql://qgtaxi:qgtaxi_2018@10.21.48.11/taxilog')  # ,echo=True ,print执行的sql
+    _Base = declarative_base(bind=_engine)
+    Session = sessionmaker(bind=_engine)
+    for i in table_itr:
+        exec(f'''class _TaxiPos{i}(BaseTaxiPos,_Base):
+        __tablename__ = "gpsdata_copy{i}"''')
+    s = Session()
+    for i in table_itr:
+        cls = eval('_TaxiPos'+str(i))   #映射单个表的类
+        pk_attr = cls.ID
+        qry = s.query(cls)
+        q = qry.filter(pk_attr> firstid).filter(pk_attr < firstid+ win).filter(cls.CAR_STAT1!='7')  #熄火部分不计
+        for col in q.order_by(cls.GPS_TIME):     #.limit(win):
+            GPS_TIME = col.GPS_TIME
+            HOUR_REPRE =col.HOUR_REPRE
+            LATITUDE = col.LATITUDE
+            LONGITUDE = col.LONGITUDE
+            LICENSEPLATENO = col.LICENSEPLATENO
+            yield [LICENSEPLATENO,HOUR_REPRE, GPS_TIME, LONGITUDE, LATITUDE]
+        return None
+
+def query_zone_quality(gZone,hour):
+    s = Session()
+    inst = s.query(ZoneQuality).filter(ZoneQuality.g_zone==gZone).filter(ZoneQuality.hour_repre==str(hour)).first()
+    return float(inst.average_time),float(inst.density),float(inst.flow)
+
+
+
+
 if __name__ =='__main__':
     geohase7='ws0e9u4'
     begin_time_l ='2017-02-01 0:0:0'

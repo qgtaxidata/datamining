@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT,CHAR
+from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT, CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from settings import url
@@ -10,6 +10,16 @@ Base = declarative_base(bind=engine)
 #创建会话
 Session = sessionmaker(bind=engine)
 # 定义映射类User，其继承上一步创建的Base
+
+class New_Income_Table(Base):
+    __tablename__ = 'DIST_INCOME'
+    ID =  Column(BIGINT,primary_key=True)
+    AREA = Column(VARCHAR(30))
+    INCOME = Column(VARCHAR(20))
+    BEGIN_TIME = Column(VARCHAR(255))
+    END_TIME = Column(VARCHAR(255))
+
+
 class BaseOperate(object):
     ID = Column(BIGINT,primary_key=True)
     WORK_BEGIN_TIME = Column(VARCHAR(255))
@@ -30,6 +40,62 @@ class OperateParams(Base):
     LINEAR =  Column(VARCHAR(255))
     LINE_MORE =  Column(VARCHAR(255))
     Ridge = Column(VARCHAR(255))
+class OperateRevenue1(Base):
+    __tablename__ = 'operate_his1'
+    ID = Column(BIGINT,primary_key=True)
+    EQUIPMENT_ID = Column(VARCHAR(30))
+    PLATENO = Column(VARCHAR(24))
+    COMPANY_ID = Column(VARCHAR(10))
+    TEAM_CODE = Column(VARCHAR(8))
+    EMPTY_MILE = Column(VARCHAR(24))
+    EMPTY_BEGIN_TIME = Column(VARCHAR(255))
+    WORK_BEGIN_TIME = Column(VARCHAR(255))
+    WORK_END_TIME = Column(VARCHAR(255))
+    UNIT_PRICE = Column(VARCHAR(7))
+    LOAD_MILE = Column(VARCHAR(6))
+    SLOW_COUNT_TIME = Column(VARCHAR(11))
+    OPERATE_MONEY = Column(VARCHAR(20))
+    EVALUATE = Column(VARCHAR(11))
+    TRADE_CODE = Column(VARCHAR(96))
+    GET_ON_LONGITUDE = Column(VARCHAR(16))
+    GET_ON_LATITUDE = Column(VARCHAR(16))
+    GET_OFF_LONGITUDE = Column(VARCHAR(16))
+    GET_OFF_LATITUDE = Column(VARCHAR(16))
+    TIME_REPRE = Column(VARCHAR(11))
+    GEOHASH5 = Column(VARCHAR(30))
+    MIN_REPRE = Column(VARCHAR(11))
+    GEOHASH7 = Column(VARCHAR(30))
+    GEOEND7 = Column(VARCHAR(765))
+    CHAUFFEUR_NO = Column(VARCHAR(8))
+    ROW_KEY = Column(VARCHAR(120))
+class OperateRevenue2(Base):
+    __tablename__ = 'operate_his2'
+    ID = Column(BIGINT,primary_key=True)
+    EQUIPMENT_ID = Column(VARCHAR(30))
+    PLATENO = Column(VARCHAR(24))
+    COMPANY_ID = Column(VARCHAR(10))
+    TEAM_CODE = Column(VARCHAR(8))
+    EMPTY_MILE = Column(VARCHAR(24))
+    EMPTY_BEGIN_TIME = Column(VARCHAR(255))
+    WORK_BEGIN_TIME = Column(VARCHAR(255))
+    WORK_END_TIME = Column(VARCHAR(255))
+    UNIT_PRICE = Column(VARCHAR(7))
+    LOAD_MILE = Column(VARCHAR(6))
+    SLOW_COUNT_TIME = Column(VARCHAR(11))
+    OPERATE_MONEY = Column(VARCHAR(20))
+    EVALUATE = Column(VARCHAR(11))
+    TRADE_CODE = Column(VARCHAR(96))
+    GET_ON_LONGITUDE = Column(VARCHAR(16))
+    GET_ON_LATITUDE = Column(VARCHAR(16))
+    GET_OFF_LONGITUDE = Column(VARCHAR(16))
+    GET_OFF_LATITUDE = Column(VARCHAR(16))
+    TIME_REPRE = Column(VARCHAR(11))
+    GEOHASH5 = Column(VARCHAR(30))
+    MIN_REPRE = Column(VARCHAR(11))
+    GEOHASH7 = Column(VARCHAR(30))
+    GEOEND7 = Column(VARCHAR(765))
+    CHAUFFEUR_NO = Column(VARCHAR(8))
+    ROW_KEY = Column(VARCHAR(120))
 class OperateRevenue3(Base):
     __tablename__ = 'operate_his3'
     ID = Column(BIGINT,primary_key=True)
@@ -581,6 +647,7 @@ class Operateefficient(Base):
     time_efficiency = Column(VARCHAR(30))
     total_drive_num = Column(VARCHAR(30))
 
+
 class Operatehotdata(Base):
     __tablename__ = 'hot_data'
     count = Column(BIGINT, primary_key=True)
@@ -598,7 +665,6 @@ class Nodes(Base):
     longitude =  Column(DECIMAL(precision=12,scale=9))
     latitude = Column(DECIMAL(precision=12,scale=9))
     geohash5 = Column(VARCHAR(30))
-    geohash7 = Column(VARCHAR(30))
 class Records(Base):
     __tablename__ = 'records'
     id = Column(BIGINT,primary_key=True,autoincrement=True)
@@ -610,19 +676,25 @@ class Records(Base):
     code = Column(BIGINT)
     fclass = Column(VARCHAR(255))
     length  = Column(DECIMAL(precision=12,scale=3))
-    geohash5 = Column(VARCHAR(10))
     from_node =Column(BIGINT)
     to_node = Column(BIGINT)
 
-#****道路质量
 class BaseTaxiPos(object):
     ID = Column(BIGINT,primary_key=True)
     LICENSEPLATENO = Column(VARCHAR(255))
     GPS_TIME = Column(TIMESTAMP)
     LONGITUDE =  Column(DECIMAL(precision=12,scale=9))
     LATITUDE= Column(DECIMAL(precision=12,scale=9))
-    CAR_STAT1 = Column(CHAR(2))
-    HOUR_REPRE = Column(VARCHAR(5))
+
+class Speed(Base):
+    __tablename__ = 'quality'
+    id = Column(BIGINT,primary_key=True,autoincrement=True)
+    rid = Column(BIGINT)
+    length = Column(DECIMAL(precision=12,scale=3))
+    average_time = Column(DECIMAL(precision=12,scale=3))
+    density = Column(DECIMAL(precision=12,scale=3))
+    count = Column(INT)
+
 class Quality(Base):
     __tablename__ = 'quality'
     id = Column(BIGINT,primary_key=True,autoincrement=True)
@@ -644,12 +716,10 @@ class ZoneQuality(Base):
     density = Column(DECIMAL(precision=12,scale=3))
     flow =  Column(DECIMAL(precision=12,scale=3))
 
+
 def drop_table(cls,Base=Base,engine=engine):
     try:
         cls.__table__.drop(engine)
     except:
         pass
     Base.metadata.create_all(engine)
-
-if __name__ == "__main__":
-    drop_table(Quality)
