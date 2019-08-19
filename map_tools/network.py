@@ -550,20 +550,3 @@ if __name__ == '__main__':
     # c = Connecty()
     # c.load_map()
     # c.modify_map(1)
-
-    # 添加geohash7
-    # net.load_map()
-    # from pygeohash import encode
-    # s = Session()
-    # import  random
-    # for n,lst in net.records.items():
-    #     n1,n2 = lst[-2:]
-    #     lon,lat = net.nodes[n1][1:]
-    #     lon1, lat1 = net.nodes[n2][1:]
-    #     ghash5 = encode(lat,lon,5)
-    #     ghash51 = encode(lat1, lon1, 5)
-    #     ghash5 = random.choice([ghash5,ghash51])
-    #     q = s.query(Records).filter(Records.id == n)
-    #     q.update({"geohash5":ghash5})
-    # s.commit()
-    # s.close()
