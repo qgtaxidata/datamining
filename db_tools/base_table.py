@@ -681,15 +681,14 @@ class Records(Base):
     from_node =Column(BIGINT)
     to_node = Column(BIGINT)
 
+# ****道路质量
 class BaseTaxiPos(object):
     ID = Column(BIGINT,primary_key=True)
     LICENSEPLATENO = Column(VARCHAR(255))
     GPS_TIME = Column(TIMESTAMP)
     LONGITUDE =  Column(DECIMAL(precision=12,scale=9))
     LATITUDE= Column(DECIMAL(precision=12,scale=9))
-
-class Quality(Base):
-    __tablename__ = 'quality'
+class BaseQuality(object):
     id = Column(BIGINT,primary_key=True,autoincrement=True)
     rid = Column(BIGINT)
     hour_repre = Column(CHAR(2))
@@ -698,6 +697,9 @@ class Quality(Base):
     density = Column(DECIMAL(precision=12,scale=3))
     flow =  Column(DECIMAL(precision=12,scale=3))
     count = Column(INT)
+for i in range(1,8):
+    exec(f'''class Quality{i}(BaseQuality,Base):
+        __tablename__ = "quality_{i}"''')
 
 class ZoneQuality(Base):
     __tablename__ = 'zone_quality'
