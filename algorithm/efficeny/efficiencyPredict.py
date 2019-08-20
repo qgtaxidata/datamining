@@ -95,7 +95,6 @@ class ModeDecomp(object):
         self.test =  self.dataSet[type][-test_size:]
         # self.test =  self.dataSet['time_utilization'][-test_size:]
 
-
     # 对数据进行平滑处理
     def _diff_smooth(self, dataSet):
         dif = dataSet.diff()         # 差分序列
@@ -116,8 +115,11 @@ class ModeDecomp(object):
             i += n - 1
             end = forbid_index[i]  # 异常点的结束索引
             # 用前后值的中间值均匀填充
-            value = np.linspace(dataSet[start - timedelta(minutes=60)], dataSet[end + timedelta(minutes=60)], n)
-            dataSet[start: end] = value
+            try:
+                value = np.linspace(dataSet[start - timedelta(minutes=60)], dataSet[end + timedelta(minutes=60)], n)
+                dataSet[start: end] = value
+            except:
+                pass
             i += 1
         return dataSet
 
@@ -225,7 +227,7 @@ def time_experate(date_time, hours=1, day=7):
     date_time = date_time + ' 00:00:00'
     date_time = get_date_time(date_time)
     date_time = date_time + timedelta(days= 2)
-    pre_date_time = date_time - timedelta(days= day)
+    pre_date_time = date_time - timedelta(days = day-1)
     if pre_date_time < get_date_time('2017-02-01 00:00:00'):
         pre_date_time = get_date_time('2017-02-01 00:00:00')
         day = date_time - pre_date_time
@@ -256,7 +258,7 @@ def Adim_dict():
     }
     return Adim_dicts
 
-#进行预测
+
 def predict(areaDict):
     Adim_dicts = Adim_dict()
     name_effict = {'pick_up_freq': '载客频率', 'mileage_utilization': '里程利用率', 'time_utilization':'出车率'}
@@ -265,65 +267,53 @@ def predict(areaDict):
     timeStamp = time_experate(Date)
     dataSet = []
     predict_Dict = {}
+    Date = Date + " 00:00:00"
     for time in timeStamp:
-        data = get_efficiencyPredict(area, time)
-        dataSet.append(data)
-    for type in ['pick_up_freq','mileage_utilization','time_utilization']:   ## 一次可以得到三个预测值
+            data = get_efficiencyPredict(area, time)
+            dataSet.append(data)
+    paramster = []
+    for type in ['pick_up_freq', 'mileage_utilization','time_utilization']:   ## 一次可以得到三个预测值
         type_dict = {}
         name_type = Adim_dicts[area] + name_effict[type]
         type_dict['type'] = name_type
         data = changeData(dataSet, type)
-        mode = ModeDecomp(data, type, test_size=48)
-        mode.decomp(48)
-        sum_min = 100
-        best_i = -1;best_j = -1; best_k = -1
-        try:            #多测修改参数
-            for i in range(0, 4):
-                try:
-                    for j in range(1, 4):
-                        try:
-                            for k in range(0, 4):
-                                try:
-                                    mode.trend_model(order=(i, j, k))
-                                    pred_time_index = mode.predict_new()
-                                    pred = mode.final_pred
-                                    test = mode.test
-                                    sum = accessMode(test, pred)
-                                    if sum < sum_min:
-                                        best_i = i
-                                        best_j = j
-                                        best_k = k
-                                    break
-                                except:
-                                    continue
-                        except:
-                            continue
-                        break
-                except:
-                    continue
+        print(data)
+        if get_date_time(Date) < get_date_time("2017-02-05 00:00:00"):
+            size = int(len(data)/7)
+        else:
+            size = 48
+        mode = ModeDecomp(data, type, test_size=size)
+        mode.decomp(size)
+        for lis in [[3, 1, 3], [1, 2, 3], [5, 2, 3], [1, 1, 2], [3, 1, 4],[0,0,1]]:
+            try:
+                mode.trend_model(order=(lis[0], lis[1], lis[2]))
                 break
-            mode.trend_model(order=(best_i, best_j, best_k))
-            pred_time_index = mode.predict_new()
-            pred = mode.final_pred
-            test = mode.test
-            accessMode(test, pred)
-            pred = np.array(pred).tolist()
-            train = np.array(mode.train).tolist()
-        except:
-            pred = [0 for _ in range(48)]
-            train = [0 for _ in range(120)]
+            except:
+                continue
+        # mode.trend_model(order=(0, 0, 1))
+        pred_time_index = mode.predict_new()
+        pred = mode.final_pred
+        test = mode.test
+        # accessMode(test, pred)
+        pred = np.array(pred).tolist()
+        train = np.array(data[type]).tolist()[:len(data) - size]
         if type == 'pick_up_freq':
             pred = [int(fre) for fre in pred]
             train = [int(fre) for fre in train]
         else:
             pred = [round(num*100.0, 1) for num in pred]
             train = [round(num*100.0, 1) for num in train]
-        y = train + pred
-        x = np.array(data['date']).tolist()
+        y = train+pred
+        x = [[time[5:10] for time in np.array(data['date']).tolist()[:(len(data)-size)]], [time[5:10] for time in np.array(data['date']).tolist()[(len(data)-size):]]]
         type_dict['x'] = x
         type_dict['y'] = y
+        # print(len(pred))
         predict_Dict[type] = type_dict
+        # paramster.append([best_i, best_j, best_k])
+    # print(area, Date, paramster[0], paramster[1], paramster[2])
     print(predict_Dict)
+    # input()
+    # insert_Operateefficient_predict(str(area), str(Date), str(paramster[0]), str(paramster[1]), str(paramster[2]))
     # plt.subplot(211)
     # plt.plot(mode.train)
     # plt.subplot(212)
@@ -340,15 +330,20 @@ def predict(areaDict):
 
 
 
-
 # 画图
 if __name__ == '__main__':
-    date = get_date_time('2017-02-05 00:00:00')
-    for i in range(1, 12):
-        for j in range(15):
-            date2 = date + timedelta(days=j)
-            print(date2)
-            date1 = str(date2)[:10]
-            areaDict = {'area': i, 'Date':date1}
-            predict(areaDict)
+    date = get_date_time('2017-02-01 00:00:00')
+    # for j in range(21):
+    #     Date = str(date+timedelta(days=j))
+    #     areaDict = {'area': 2, 'Date': Date[:10]}
+    #     predict(areaDict)
+    areaDict = {'area': 11, 'Date': '2017-02-16'}
+    predict(areaDict)
+    # for i in range(1, 12):
+    #     for j in range(15):
+    #         date2 = date + timedelta(days=j)
+    #         print(date2)
+    #         date1 = str(date2)[:10]
+    #         areaDict = {'area': i, 'Date':date1}
+    #         predict(areaDict)
 
