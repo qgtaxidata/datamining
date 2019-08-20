@@ -646,8 +646,6 @@ class Operateefficient(Base):
     mile_efficiency = Column(VARCHAR(30))
     time_efficiency = Column(VARCHAR(30))
     total_drive_num = Column(VARCHAR(30))
-
-
 class Operatehotdata(Base):
     __tablename__ = 'hot_data'
     count = Column(BIGINT, primary_key=True)
@@ -655,7 +653,23 @@ class Operatehotdata(Base):
     geohash = Column(VARCHAR(100))
     times = Column(VARCHAR(100))
     number = Column(VARCHAR(100))
+class Operatehotdata7(Base):
+    __tablename__ = 'hot_data7'
+    count = Column(BIGINT, primary_key=True)
+    date = Column(VARCHAR(100))
+    geohash7 = Column(VARCHAR(100))
+    times = Column(VARCHAR(100))
+    number = Column(VARCHAR(100))
 
+class new_table_for_hot(Base):
+    __tablename__ = 'HOT_INFO'
+    ID =  Column(BIGINT,primary_key=True)
+    geohash5 = Column(VARCHAR(20))
+    period = Column(VARCHAR(225))
+    total_income = Column(VARCHAR(30))
+    empty_mile = Column(VARCHAR(30))
+    show_speed = Column(VARCHAR(20))
+    count = Column(BIGINT)
 
 class Nodes(Base):
     __tablename__ = 'nodes'
