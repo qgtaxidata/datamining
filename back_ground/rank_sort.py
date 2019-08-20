@@ -25,4 +25,4 @@ def get_rank(area_dict):
 
 if __name__ == '__main__':
     area_dict = {'area': 4, 'date': '2017-02-03'}
-    get_rank(area_dict)
+    print(get_rank(area_dict))

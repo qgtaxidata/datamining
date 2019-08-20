@@ -60,8 +60,8 @@ def calculate_driver(drive_dict):
     Adamin_Region = Region()
     day = int(day[-2:])
     all_geohash = Adamin_Region[area]
-    all_mile = 0.0
-    null_mile = 0.0
+    load_mile = 0.0
+    empty_mile = 0.0
     all_null_time = 0.0  # 总空车时间
     all_drive_time = 0.0  # 载客时长
     all_null_mile = 0.0
@@ -72,8 +72,9 @@ def calculate_driver(drive_dict):
         if len(driver_info):
             company = driver_info[0][0]
         for one_order in driver_info:
-            all_mile += one_order[1]
-            null_mile += one_order[2]
+            print(driver_info)
+            load_mile += one_order[1]
+            empty_mile += one_order[2]
             null_time = get_date_time(one_order[3]).timestamp()
             begin_time = get_date_time(one_order[4]).timestamp()
             end_time = get_date_time(one_order[5]).timestamp()
@@ -82,11 +83,10 @@ def calculate_driver(drive_dict):
             else:
                 all_null_time += (begin_time - null_time)/60  #所有的空车时间
             all_drive_time += (end_time - begin_time)/60  #载客时长
-        all_null_mile = all_mile - null_mile  #载客旅程
     driver_infomation['companyID'] = company
-    driver_infomation['load_mile'] = round(all_mile, 2)
+    driver_infomation['load_mile'] = round(load_mile, 2)
     driver_infomation['load_time'] =  round(all_drive_time, 2)
-    driver_infomation['no_load_mile'] =  round(all_null_mile, 2)
+    driver_infomation['no_load_mile'] =  round(empty_mile, 2)
     driver_infomation['no_load_time'] = round(all_null_time, 2)
     print(driver_infomation)
     return driver_infomation

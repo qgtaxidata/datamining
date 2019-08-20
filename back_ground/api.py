@@ -11,7 +11,11 @@ from hot_Predict.hot_predict import predict_hotmap
 from rank_sort import get_rank
 from pagerank import demand
 from driverInfor import calculate_driver
-from map_tools.path_route import route_plan,pathPlaning
+from map_tools.path_route import route_plan, pathPlaning
+from income_pred.income_pre_main import main_pre
+from efficeny.efficiencyPredict import predict
+from billboard_sort import get_billboards
+from abnormal_data import test_data
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -21,11 +25,6 @@ planing = pathPlaning()
 mapping = {0: '全广州', 1: '花都区', 2: '南沙区', 3: '增城区', 4: '从化区',
            5: '番禺区', 6: '白云区', 7: '黄埔区', 8: '荔湾区', 9: '海珠区',
            10: '天河区', 11: '越秀区'}
-
-
-@app.route('/todo/api/v1.5/route/<int:id>', methods=['GET'])
-def get_task(id):
-    return
 
 
 @app.route('/taxi/api/v1.1/HotSpot', methods=['POST'])
@@ -70,10 +69,13 @@ def get_income_rank():
     json_data = request.get_data()
     dic = json.loads(json_data)
     print('IncomeRank:', dic)
-    rank = get_rank(dic)
-    print(rank)
+    try:
+        rank = get_rank(dic)
+        print(rank)
+        return jsonify(rank)
+    except TypeError or KeyError:
+        return jsonify('error')
 
-    return jsonify(rank)
 
 @app.route('/taxi/api/v1.0/Demand', methods=['POST'])
 def get_demand():
@@ -107,10 +109,10 @@ def get_driver_info():
     print('GetDriverInfo:', dic)
     try:
         result = calculate_driver(dic)
-    except TypeError:
-        return 'error'
-    print(result)
-    return jsonify(result)
+        print(result)
+        return jsonify(result)
+    except TypeError or KeyError:
+        return jsonify('error')
 
 
 @app.route('/taxi/api/v1.0/GetRoute', methods=['POST'])
@@ -118,15 +120,14 @@ def get_route():
     """
     :return:
     """
-
+    global planing
     json_data = request.get_data()
     dic = json.loads(json_data)
     print('route_plan:', dic)
     origin = gcj02_to_wgs84(np.array([[dic['lon_origin'], dic['lat_origin']]]))[0]
     destination = gcj02_to_wgs84(np.array([[dic['lon_destination'], dic['lat_destination']]]))[0]
     print(origin, destination)
-    route, costs = route_plan(origin, destination,planing)
-    print(route, costs)
+    route, costs = route_plan(origin, destination)
 
     try:
         routes = list()
@@ -141,18 +142,74 @@ def get_route():
                 point_dic['lng'] = gcj_point[0]
                 point_dic['lat'] = gcj_point[1]
                 route_dic['route'].append(point_dic)
-            route_dic['time'] = 30
-            route_dic['distance'] = int(costs[i] / 1000)
+            route_dic['time'] = costs[i][1]
+            route_dic['distance'] = costs[i][0]
             routes.append(route_dic)
-            print(routes)
+            # print(routes)
 
         return jsonify(routes)
 
-    except TypeError:
+    except TypeError or KeyError:
         return jsonify([])
 
 
+@app.route('/taxi/api/v1.0/GetBillboard', methods=['POST'])
+def get_billboard():
+    """
 
+    :return:
+    """
+    json_data = request.get_data()
+    dic = json.loads(json_data)
+    print('billboard:', dic)
+    try:
+        result = get_billboards(dic)
+        print(result)
+        return jsonify(result)
+    except TypeError or KeyError:
+        return jsonify([])
+
+
+@app.route('/taxi/api/v1.0/GetIncomePrediction', methods=['POST'])
+def income_pred():
+    """
+
+    :return:
+    """
+    json_data = request.get_data()
+    dic = json.loads(json_data)
+    print('income_pred:', dic)
+    date = dic['date']
+    area = dic['area']
+    try:
+        result = main_pre(date, area)
+        return jsonify(result)
+    except TypeError or KeyError:
+        return jsonify(msg='error')
+
+
+@app.route('/taxi/api/v1.0/GetTaxiUtilization', methods=['POST'])
+def get_taxi_utilization():
+    """
+
+    :return:
+    """
+    json_data = request.get_data()
+    dic = json.loads(json_data)
+    print('taxi_utilization:', dic)
+    try:
+        result = predict(dic)
+        return jsonify(result)
+    except TypeError or KeyError:
+        return jsonify(msg='error')
+
+@app.route('/taxi/api/v1.0/AbnormalTaxiAnalysis', methods=['POST'])
+def get_analysis():
+    """
+
+    :return:
+    """
+    return jsonify(test_data())
 
 if __name__ == '__main__':
     app.run(debug=True, host='192.168.31.89', port=8080, threaded=True)
