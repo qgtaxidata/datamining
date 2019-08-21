@@ -303,7 +303,7 @@ def predict(areaDict):
         else:
             pred = [round(num*100.0, 1) for num in pred]
             train = [round(num*100.0, 1) for num in train]
-        y = train+pred
+        y = [train,pred]
         x = [[time[5:10] for time in np.array(data['date']).tolist()[:(len(data)-size)]], [time[5:10] for time in np.array(data['date']).tolist()[(len(data)-size):]]]
         type_dict['x'] = x
         type_dict['y'] = y
@@ -312,6 +312,7 @@ def predict(areaDict):
         # paramster.append([best_i, best_j, best_k])
     # print(area, Date, paramster[0], paramster[1], paramster[2])
     print(predict_Dict)
+    return predict_Dict
     # input()
     # insert_Operateefficient_predict(str(area), str(Date), str(paramster[0]), str(paramster[1]), str(paramster[2]))
     # plt.subplot(211)
@@ -337,8 +338,9 @@ if __name__ == '__main__':
     #     Date = str(date+timedelta(days=j))
     #     areaDict = {'area': 2, 'Date': Date[:10]}
     #     predict(areaDict)
-    areaDict = {'area': 11, 'Date': '2017-02-16'}
+    areaDict = {'area': 5, 'Date': '2017-02-21'}
     predict(areaDict)
+
     # for i in range(1, 12):
     #     for j in range(15):
     #         date2 = date + timedelta(days=j)
