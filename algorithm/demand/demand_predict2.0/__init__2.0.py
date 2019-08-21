@@ -368,5 +368,3 @@ if __name__ =='__main__':
     begin_time_u = '2017-02-02 19:53:47'
     # lst = query_operate(begin_time_l,geohase7)
     # lst = query_operate_(begin_time_l,begin_time_u,None)
-    # with open('lst.py','w') as f:
-    #     f.write(str(lst))
