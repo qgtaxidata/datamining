@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT, CHAR,DATETIME
+from sqlalchemy import create_engine,VARCHAR,Column,BIGINT,DECIMAL,BOOLEAN,TIMESTAMP,INT, CHAR,DATETIME,FLOAT
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from settings import url
@@ -710,6 +710,16 @@ class ZoneQuality(Base):
     average_time = Column(DECIMAL(precision=12,scale=3))
     density = Column(DECIMAL(precision=12,scale=3))
     flow =  Column(DECIMAL(precision=12,scale=3))
+
+class ZoneQuality_1(Base):
+    __tablename__ = 'zone_quality_1'
+    id = Column(BIGINT, primary_key=True, autoincrement=True)
+    g_zone = Column(INT)
+    g_name = Column(VARCHAR(10))
+    date_time = Column(DATETIME)
+    average_speed = Column(FLOAT(precision=12))
+    density = Column(FLOAT(precision=12))
+    flow =  Column(FLOAT(precision=12))
 
 
 def drop_table(cls,Base=Base,engine=engine):

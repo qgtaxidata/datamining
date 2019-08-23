@@ -81,7 +81,46 @@ def new_zone_quality():
     s.commit()
     s.close()
 
+def new_zone_quality_1(d,maxrq=1000,date='2017-01-31'):
+    '''取100个样本'''
+    from settings import g_boundury,g_name
+    s = Session()
+    #全盘读取
+    cls = eval(f'Quality_{d}')   #某一天
+    date = datetime.strptime(date,'%Y-%m-%d') + timedelta(days=d)
+    print("开始")
+    for each_z,ghashs in enumerate(g_boundury): #对每个行政区
+        for h in range(24): #对每个小时
+            print("小时", h, "  /总数24", "区域")
+            qry = s.query(cls.average_speed, cls.density, cls.flow)\
+            .filter(cls.hour_repre==str(h))
+            i = 0
+            tmp = []
+            for each_g in ghashs:  # 对每个ghash块
+                i += 1
+                # print("小时", h, "  /总数24","区域", i, "  /总数", len(ghashs))
+                for rst in qry.filter(Records.geohash5 == each_g).order_by(cls.count).limit(maxrq):   #限制样本数
+                    (a_time, density, flow) =rst
+                    if a_time > 1e7:
+                        a_time /= 1e6
+                    a_time *= 3.6
+                    if density > 1e7:
+                        density /= 1e9
+                    #数据预处理
+                    tmp.append([a_time,density,flow])
+            if tmp:
+                tmp = np.array(tmp)
+                a_time,density,flow = np.mean(tmp,axis=0)
+            else:
+                a_time, density, flow = 0,0,0
+            date_time = date + timedelta(hours=h)
+            # # **写入数据库
+            print(g_name[each_z],date_time,each_z,a_time,density,flow)
+            s.add(ZoneQuality_1(date_time=date_time,g_zone=each_z+1,g_name=g_name[each_z]
+                        ,average_speed=float(a_time),density=float(density),flow=float(flow)))
 
+            s.commit()
+    s.close()
 
 if __name__ =='__main__':
     #new_muti_operate((1,))    #或者(3,4,5)，传入一个可迭代对象
